@@ -29,7 +29,8 @@ $pathsToDelete = @(
     "c:\WRT.exe",
     "c:\Wtool.exe",
     "c:\Wtools v1.0.2.4",
-    "c:\Nettoyer-disque.cmd",
+	"c:\Nettoyer-disque.cmd",
+	"C:\Users\USER\Desktop\Copieur",
     "c:\Windows_Repair_Toolbox"
 )
 
