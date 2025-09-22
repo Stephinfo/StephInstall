@@ -6,7 +6,10 @@ $DesktopPathPublic = Join-Path -Path $env:PUBLIC -ChildPath 'Desktop'
 
 $pathsToDelete = @(
     "$DesktopPathUser\DriversCloud_Install",
-    "$DownloadPathUser\MultInstall.exe",
+	"$DownloadPathUser\MultInstall.exe",
+	"$DownloadPathUser\OptignoreList",
+	"$DownloadPathUser\service.conf.lock",
+	"$DownloadPathUser\system.conf.lock",
     "$DownloadPathUser\MI.exe",
     "c:\OOAPB.exe",
     "$DownloadPathUser\App",
@@ -30,9 +33,8 @@ $pathsToDelete = @(
     "c:\Wtool.exe",
     "c:\Wtools v1.0.2.4",
 	"c:\Nettoyer-disque.cmd",
-	"C:\Users\USER\Desktop\Copieur",
-	"c:\Users\USER\Desktop\Copieur.exe",
-	"C:\Users\USER\Desktop\Copieur.exe",
+	"$DesktopPathUser\Copieur",
+	"$DesktopPathUser\Copieur.exe",
 	"c:\Windows_Repair_Toolbox"
 )
 
