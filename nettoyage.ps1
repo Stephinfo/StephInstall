@@ -31,7 +31,9 @@ $pathsToDelete = @(
     "c:\Wtools v1.0.2.4",
 	"c:\Nettoyer-disque.cmd",
 	"C:\Users\USER\Desktop\Copieur",
-    "c:\Windows_Repair_Toolbox"
+	"c:\Users\USER\Desktop\Copieur.exe",
+	"C:\Users\USER\Desktop\Copieur.exe",
+	"c:\Windows_Repair_Toolbox"
 )
 
 $pathsToDelete | ForEach-Object {
