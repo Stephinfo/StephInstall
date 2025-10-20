@@ -3,7 +3,8 @@
 $DownloadPathUser = Join-Path -Path ([System.Environment]::GetFolderPath([System.Environment+SpecialFolder]::UserProfile)) -ChildPath 'Downloads'
 $DesktopPathUser = [Environment]::GetFolderPath("Desktop")
 $DesktopPathPublic = Join-Path -Path $env:PUBLIC -ChildPath 'Desktop'
-
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
 $pathsToDelete = @(
     "$DesktopPathUser\DriversCloud_Install",
 	"$DownloadPathUser\MultInstall.exe",
@@ -46,7 +47,39 @@ $pathsToDelete | ForEach-Object {
         Write-Host "Le chemin n'existe pas : $_"
     }
 }
+# Suppression des profils WiFi
+Write-Host "`n=== Suppression des profils WiFi ===" -ForegroundColor Cyan
+$wifiProfilesToDelete = @("WIFI_ipv4", "GUEST")
 
+foreach ($profile in $wifiProfilesToDelete)
+{
+	try
+	{
+		# Vérifier si le profil existe
+		$existingProfiles = netsh wlan show profiles | Select-String "$profile"
+		
+		if ($existingProfiles)
+		{
+			netsh wlan delete profile name="$profile" 2>$null
+			if ($LASTEXITCODE -eq 0)
+			{
+				Write-Host "✓ Profil WiFi supprimé : $profile" -ForegroundColor Green
+			}
+			else
+			{
+				Write-Host "⚠ Erreur lors de la suppression de : $profile" -ForegroundColor Yellow
+			}
+		}
+		else
+		{
+			Write-Host "○ Profil WiFi non trouvé : $profile" -ForegroundColor Gray
+		}
+	}
+	catch
+	{
+		Write-Host "⚠ Impossible de supprimer : $profile - $_" -ForegroundColor Yellow
+	}
+}
 Write-Host "Appuyez sur une touche pour fermer la fenêtre..."
 [Console]::ReadKey($true) | Out-Null
 [Console]::WriteLine("Fermeture de la fenêtre...")
